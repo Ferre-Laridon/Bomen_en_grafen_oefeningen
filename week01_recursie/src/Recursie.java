@@ -104,4 +104,5 @@ public class Recursie {
         return 2 + (n-1)*3 + aantalKaarten(n-1);
     }
 
+
 }
