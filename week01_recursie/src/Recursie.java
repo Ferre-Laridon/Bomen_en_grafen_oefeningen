@@ -91,10 +91,22 @@ public class Recursie {
 
     // oefening 10;
     public static ArrayList<String> findSubstrings(String string) {
-        ArrayList<String> resultaat = new ArrayList<>();
-        if (string==null) throw new IllegalArgumentException();
-        //if (string.isBlank()) return resultaat.add("");
-        return new ArrayList<>();
+        if (string == null)
+            throw new IllegalArgumentException();
+        ArrayList<String> res = new ArrayList<String>();
+        if (string.length() <= 1) { //ook de lege string telt mee!
+            res.add(string);
+            return res;
+        }
+        else {
+            res.add(string.substring(0, 1));
+            ArrayList<String> res2 = findSubstrings(string.substring(1));
+            res.addAll(res2);
+            for (String s : res2) {
+                res.add(string.charAt(0) + s);
+            }
+            return res;
+        }
     }
 
     // oefening 11;
@@ -103,6 +115,5 @@ public class Recursie {
         if (n==1) return 2;
         return 2 + (n-1)*3 + aantalKaarten(n-1);
     }
-
 
 }
