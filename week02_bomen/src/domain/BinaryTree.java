@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+
 public class BinaryTree<E> {
     private E data;
     private BinaryTree<E> leftTree, rightTree;
@@ -55,15 +57,14 @@ public class BinaryTree<E> {
     }
 
     public int countLeaves() {
-        if (this.leftTree == null && this.rightTree == null) return 1;
-        else if (this.leftTree == null) return this.rightTree.countLeaves();
-        else if (this.rightTree == null) return this.leftTree.countLeaves();
-        else if (this.leftTree.isLeaf()) return 1 + this.rightTree.countLeaves();
-        else if (this.rightTree.isLeaf()) return 1 + this.leftTree.countLeaves();
-        else return this.leftTree.countLeaves() + this.rightTree.countLeaves();
+        if (this.isLeaf()) return 1;
+        else {
+            return (this.leftTree == null ? 0 : this.leftTree.countLeaves())
+                    + (this.rightTree == null ? 0 : this.rightTree.countLeaves());
+        }
     }
 
-    public void getDataLeaves() {
+    /* public void getDataLeaves() {
         if (this.leftTree == null && this.rightTree == null) System.out.print(this.data + " ");
         else if (this.leftTree == null) this.rightTree.getDataLeaves();
         else if (this.rightTree == null) this.leftTree.getDataLeaves();
@@ -78,15 +79,40 @@ public class BinaryTree<E> {
             this.leftTree.getDataLeaves();
             this.rightTree.getDataLeaves();
         }
+    } */
+
+    public ArrayList<E> getDataLeaves() {
+        ArrayList<E> res = new ArrayList<>();
+        if (this.isLeaf()) {
+            res.add(this.data);
+        } else {
+            res = (this.leftTree == null ? new ArrayList<>() : this.leftTree.getDataLeaves());
+            ArrayList<E> rightLeaves =
+                    (this.rightTree == null ? new ArrayList<>() : this.rightTree.getDataLeaves());
+            res.addAll(rightLeaves);
+        }
+        return res;
     }
 
-    public boolean contains(E data) {
+    /* public boolean contains(E data) {
         if (this.data == data) return true;
         else if (this.rightTree != null && this.leftTree != null)
             return (this.leftTree.contains(data) || this.rightTree.contains(data));
         else if (this.leftTree == null && this.rightTree != null) return this.rightTree.contains(data);
         else if (this.leftTree != null) return this.leftTree.contains(data);
         else return false;
+    } */
+
+    public boolean contains(E s) {
+        if (s == null) {
+            return false;
+        }
+        if (s.equals(this.data)) {
+            return true;
+        } else {
+            return (this.leftTree == null ? false : this.leftTree.contains(s)) ||
+                    (this.rightTree == null ? false : this.rightTree.contains(s));
+        }
     }
 
 }
