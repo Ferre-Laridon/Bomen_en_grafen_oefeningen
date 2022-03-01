@@ -41,5 +41,4 @@ public class BinaryTreeDriver {
 		System.out.println(boom.contains("Q"));
 	}
 
-
 }
