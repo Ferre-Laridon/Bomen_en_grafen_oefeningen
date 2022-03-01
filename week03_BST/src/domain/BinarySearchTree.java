@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+
 public class BinarySearchTree<E extends Comparable<E>> extends BinaryTree<E> {
 
 	public BinarySearchTree(E data, BinarySearchTree<E> leftTree, BinarySearchTree<E> rightTree) {
@@ -11,11 +13,30 @@ public class BinarySearchTree<E extends Comparable<E>> extends BinaryTree<E> {
 	}
 
 	public boolean lookup(E data) {
-		throw new UnsupportedOperationException("Not yet implemented");
+		if (data.compareTo(this.data) == 0) return true;
+		else {
+			if (data.compareTo(this.data) < 0) {
+				if (leftTree == null) return false;
+				else return leftTree.lookup(data);
+			} else {
+				if (rightTree == null) return false;
+				else return rightTree.lookup(data);
+			}
+		}
 	}
 
 	public boolean addNode(E data) {
-		throw new UnsupportedOperationException("Not yet implemented");
+		if (data.compareTo(this.data) < 0) {
+			if (leftTree == null) {
+				leftTree = new BinarySearchTree<E>(data);
+				return true;
+			}
+			else return leftTree.addNode(data);
+		} else if (rightTree == null) {
+			rightTree = new BinarySearchTree<E>(data);
+			return true;
+		}
+		else return rightTree.addNode(data);
 	}
 
 	public boolean removeNode(E data){
@@ -23,12 +44,19 @@ public class BinarySearchTree<E extends Comparable<E>> extends BinaryTree<E> {
 	}
 
 	public E searchSmallest(){
-		throw new UnsupportedOperationException("Not yet implemented");
+		if (leftTree == null) return this.data;
+		else return leftTree.searchSmallest();
 	}
 
 	public E searchGreatest(){
+		if (rightTree == null) return this.data;
+		else return rightTree.searchGreatest();
+	}
+
+	public ArrayList<E> getPath(E data) {
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
+
 }
 
 
