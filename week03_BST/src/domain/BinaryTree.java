@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+
 public class BinaryTree<E>{
 	E data;
 	BinaryTree<E> leftTree, rightTree;
@@ -42,6 +44,10 @@ public class BinaryTree<E>{
 	}
 
 	E searchGreatest(){
+		throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
+	}
+
+	public ArrayList<E> getPath(E data) {
 		throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
 	}
 
