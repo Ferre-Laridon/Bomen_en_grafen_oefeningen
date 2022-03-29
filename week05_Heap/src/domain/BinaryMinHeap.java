@@ -66,28 +66,28 @@ public class BinaryMinHeap<E extends Comparable<E>> {
         E rechterKind = this.values.get(2);
         E kleinsteKind = linkerKind;
         int indexKleinsteKind = 1;
-        if (rechterKind.compareTo(linkerKind) > 0) {
+        if (rechterKind.compareTo(linkerKind) < 0) {
             kleinsteKind = rechterKind;
             indexKleinsteKind = 2;
         }
+        int size = this.values.size();
 
-
+//        if (indexLinkerKind <= size && indexRechterKind <= size)
         while (eerste.compareTo(linkerKind) > 0 || eerste.compareTo(rechterKind) > 0) {
-            while (this.values.size() - 1 >= indexRechterKind) {
-                this.values.set(indexKleinsteKind, eerste);
-                this.values.set(indexEerste, kleinsteKind);
+            this.values.set(indexKleinsteKind, eerste);
+            this.values.set(indexEerste, kleinsteKind);
 
-                indexEerste = indexKleinsteKind;
+            indexEerste = indexKleinsteKind;
+            eerste = this.values.get(indexEerste);
 
-                indexLinkerKind = 2 * indexEerste + 1;
-                linkerKind = this.values.get(indexLinkerKind);
+            indexLinkerKind = 2 * indexEerste + 1;
+            linkerKind = this.values.get(indexLinkerKind);
 
-                indexRechterKind = 2 * indexEerste + 2;
-                rechterKind = this.values.get(indexRechterKind);
+            indexRechterKind = 2 * indexEerste + 2;
+            rechterKind = this.values.get(indexRechterKind);
 
-                if (linkerKind.compareTo(rechterKind) > 0) kleinsteKind = rechterKind;
-                else kleinsteKind = linkerKind;
-            }
+            if (linkerKind.compareTo(rechterKind) > 0) kleinsteKind = rechterKind;
+            else kleinsteKind = linkerKind;
         }
     }
 
