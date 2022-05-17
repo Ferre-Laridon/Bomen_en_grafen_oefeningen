@@ -9,24 +9,20 @@ public class Graph {
     public static final int infty = Integer.MAX_VALUE;
 
     public Graph(int[][] matrix) {
-        if (!isGeldigeVerbindingsMatrix(matrix))
-            throw new IllegalArgumentException("No valid verbindingsmatrix");
+        if (!isGeldigeVerbindingsMatrix(matrix)) throw new IllegalArgumentException("No valid verbindingsmatrix");
 
         this.verbindingsMatrix = matrix.clone();
     }
 
     private boolean isGeldigeVerbindingsMatrix(int[][] matrix) {
-        if (matrix == null || matrix.length != matrix[0].length)
-            return false;
+        if (matrix == null || matrix.length != matrix[0].length) return false;
 
         for (int i = 0; i < matrix.length; i++)
-            if (matrix[i][i] != 0)
-                return false;
+            if (matrix[i][i] != 0) return false;
 
         for (int i = 0; i < matrix.length; i++)
             for (int j = 0; j < matrix.length; j++)
-                if (matrix[i][j] != 0 && matrix[i][j] != 1)
-                    return false;
+                if (matrix[i][j] != 0 && matrix[i][j] != 1) return false;
         return true;
     }
 
@@ -48,7 +44,15 @@ public class Graph {
         queue.add(start);
         ancestors[start - 1] = 0;
 
-        // oefening 1.4
+        while (!queue.isEmpty()) {
+            int huidig = queue.remove();
+            for (int index = 0 ; index < verbindingsMatrix.length; index++) {
+                if (verbindingsMatrix[huidig-1][index] == 1 && ancestors[index] == infty) {
+                    ancestors[index] = huidig;
+                    queue.add(index + 1);
+                }
+            }
+        }
 
         return ancestors;
     }

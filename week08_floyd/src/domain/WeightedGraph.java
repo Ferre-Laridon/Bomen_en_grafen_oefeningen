@@ -25,6 +25,18 @@ public class WeightedGraph {
         int[][] pointerMatrix = new int[getAantalKnopen()][getAantalKnopen()];
         double[][] DMatrix = this.gewichtenMatrix.clone();
 
+        for (int i=0; i<getAantalKnopen(); i++) {
+            for (int j=0; j<getAantalKnopen(); j++) {
+                for (int k=0; k<getAantalKnopen(); k++) {
+                    double origineel = DMatrix[j][k];
+                    double nieuw = DMatrix[j][i]+DMatrix[i][k];
+                    if (origineel>nieuw) {
+                        origineel = nieuw;
+                        pointerMatrix[j][k]++;
+                    }
+                }
+            }
+        }
 
 		return pointerMatrix;
 	}
