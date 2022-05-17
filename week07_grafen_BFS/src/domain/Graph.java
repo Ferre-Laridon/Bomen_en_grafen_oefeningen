@@ -44,12 +44,23 @@ public class Graph {
         queue.add(start);
         ancestors[start - 1] = 0;
 
+<<<<<<< HEAD
         while (!queue.isEmpty()) {
             int huidig = queue.remove();
             for (int index = 0 ; index < verbindingsMatrix.length; index++) {
                 if (verbindingsMatrix[huidig-1][index] == 1 && ancestors[index] == infty) {
                     ancestors[index] = huidig;
                     queue.add(index + 1);
+=======
+        // oefening 1.4
+        while (!queue.isEmpty())
+        {
+            int element = queue.remove();
+            for(int i = 0; i< this.verbindingsMatrix.length; i++){
+                if (this.verbindingsMatrix[element - 1][i] == 1 && ancestors[i] == infty) {
+                    ancestors[i] = element;
+                    queue.add(i + 1);
+>>>>>>> 72a3769891e38fe8be654eaffb721e4eb39c202a
                 }
             }
         }
