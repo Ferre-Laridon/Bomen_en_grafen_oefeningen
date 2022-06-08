@@ -6,7 +6,6 @@ public class Recursie {
 
 
     // Oefening 1: n-de Fibonacci-getal
-
     public static int fibonacci(int getal) {
         if (getal <=0) throw new IllegalArgumentException();
         if (getal == 1 || getal == 2) return 1;
@@ -14,7 +13,6 @@ public class Recursie {
     }
 
     // Oefening 2 : som van cijfers
-
     public static int somVanCijfers(int getal) {
         if (getal/10 == 0) return Math.abs(getal);
         getal = Math.abs(getal);
@@ -30,7 +28,6 @@ public class Recursie {
     }
 
     //oefening 4: countX
-
     public static int countX(String s) {
         if (s==null) throw new IllegalArgumentException();
         if (s.isBlank()) return 0;
@@ -60,7 +57,6 @@ public class Recursie {
     }
 
     // oefening 7
-
     public static String changePi(String s) {
         if (s==null) throw new IllegalArgumentException();
         if (s.isBlank()) return "";
@@ -71,14 +67,14 @@ public class Recursie {
         return letter + changePi(s.substring(1));
     }
 
-    // oefening 8:
+    // oefening 8
     public static int tweelog(int getal) {
         if (getal<=0) throw new IllegalArgumentException();
         if (getal==1) return 0;
         return 1 + tweelog(getal/2);
     }
 
-    // oefening 9;
+    // oefening 9
     public static double findMaximum(List<Double> lijst) {
         if (lijst==null || lijst.size()==0) throw new IllegalArgumentException();
         if (lijst.size()==1) return lijst.get(0);
@@ -89,7 +85,7 @@ public class Recursie {
         return findMaximum(lijst);
     }
 
-    // oefening 10;
+    // oefening 10
     public static ArrayList<String> findSubstrings(String string) {
         if (string == null)
             throw new IllegalArgumentException();
@@ -109,7 +105,7 @@ public class Recursie {
         }
     }
 
-    // oefening 11;
+    // oefening 11
     public static int aantalKaarten(int n) {
         if (n<=0) throw new IllegalArgumentException();
         if (n==1) return 2;

@@ -64,23 +64,6 @@ public class BinaryTree<E> {
         }
     }
 
-    /* public void getDataLeaves() {
-        if (this.leftTree == null && this.rightTree == null) System.out.print(this.data + " ");
-        else if (this.leftTree == null) this.rightTree.getDataLeaves();
-        else if (this.rightTree == null) this.leftTree.getDataLeaves();
-        else if (this.leftTree.isLeaf()) {
-            System.out.print(this.leftTree.data + " ");
-            this.rightTree.getDataLeaves();
-        } else if (this.rightTree.isLeaf()){
-            System.out.print(this.rightTree.data + " ");
-            this.leftTree.getDataLeaves();
-        }
-        else {
-            this.leftTree.getDataLeaves();
-            this.rightTree.getDataLeaves();
-        }
-    } */
-
     public ArrayList<E> getDataLeaves() {
         ArrayList<E> res = new ArrayList<>();
         if (this.isLeaf()) {
@@ -93,15 +76,6 @@ public class BinaryTree<E> {
         }
         return res;
     }
-
-    /* public boolean contains(E data) {
-        if (this.data == data) return true;
-        else if (this.rightTree != null && this.leftTree != null)
-            return (this.leftTree.contains(data) || this.rightTree.contains(data));
-        else if (this.leftTree == null && this.rightTree != null) return this.rightTree.contains(data);
-        else if (this.leftTree != null) return this.leftTree.contains(data);
-        else return false;
-    } */
 
     public boolean contains(E s) {
         if (s == null) {

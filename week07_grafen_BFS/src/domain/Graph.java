@@ -44,14 +44,6 @@ public class Graph {
         queue.add(start);
         ancestors[start - 1] = 0;
 
-<<<<<<< HEAD
-        while (!queue.isEmpty()) {
-            int huidig = queue.remove();
-            for (int index = 0 ; index < verbindingsMatrix.length; index++) {
-                if (verbindingsMatrix[huidig-1][index] == 1 && ancestors[index] == infty) {
-                    ancestors[index] = huidig;
-                    queue.add(index + 1);
-=======
         // oefening 1.4
         while (!queue.isEmpty())
         {
@@ -60,7 +52,6 @@ public class Graph {
                 if (this.verbindingsMatrix[element - 1][i] == 1 && ancestors[i] == infty) {
                     ancestors[i] = element;
                     queue.add(i + 1);
->>>>>>> 72a3769891e38fe8be654eaffb721e4eb39c202a
                 }
             }
         }
@@ -69,16 +60,21 @@ public class Graph {
     }
 
     public List<Integer> findPath(int start, int destination) {
-        if (start <= 0 || start > this.getAantalKnopen() || destination <= 0 || destination > this.getAantalKnopen())
+        if (start <= 0 || start > this.getAantalKnopen() || destination <= 0 ||
+                destination > this.getAantalKnopen())
             throw new IllegalArgumentException();
-
         int[] ancestors = this.findAncestors(start, destination);
         List<Integer> path = new LinkedList<>();
-
-        // oefening 1.5
-
+        int ouder = ancestors[destination - 1];
+        while (ouder != 0 && ouder != infty) {
+            path.add(0, destination);;
+            destination = ouder;
+            ouder = ancestors[destination - 1];
+        }
+        if (ouder == 0) {
+            path.add(0,destination);
+        }
         return path;
-
     }
 
     private void initArray(int[] array, int value) {
